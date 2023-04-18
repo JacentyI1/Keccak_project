@@ -14,12 +14,15 @@ public class general {
             "0x8000000080008081",   "0x8000000000008080",   "0x0000000080000001",   "0x8000000080008008"
     };
 
-    static ArrayList<BigInteger> RoundConstants = new ArrayList<>();
-
-    static public void fillRC(){
+    static ArrayList<BigInteger> RoundConstants = new ArrayList<>(); //init
+    /**
+     * translates rcstring's data into an ArrayList of BigIntegers and returns this array.
+     * */
+    static public ArrayList<BigInteger> fillRC(){
         for(String number : rcstring){
             RoundConstants.add(new BigInteger(number, 16));
         }
+        return RoundConstants;
     }
 
 }
