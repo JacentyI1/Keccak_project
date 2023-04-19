@@ -52,20 +52,20 @@ public class general {
     /**
      * Circularly rotate 'value' to the left,
      * treating it as a quantity of the given size in bits.
-     * @return
      */
     static public long rol(long value, int left, int bits){
-        int top = (int) (value >>> (bits - left));
-        int bot = (int) ((value & ((1 << (bits - left)) - 1)) << left);
+        long top = value >>> (bits - left);
+        long bot = (value & ((1L << (bits - left)) - 1)) << left;
         return bot | top;
     }
     /**
      * Circularly rotate 'value' to the right,
      * treating it as a quantity of the given size in bits.
      * */
-    static public BigInteger ror(){
-        //ToDo: ror()
-        return null;
+    static public long ror(long value, int right, int bits){
+        long bot = value << (bits - right);
+        long top = (value & ((1L << (bits - right)) - 1)) >>> right;
+        return bot | top;
     }
     /**
      * The Keccak padding function.
