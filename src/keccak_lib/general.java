@@ -11,13 +11,13 @@ public class general {
     }
 
 
-    static ArrayList<BigInteger> RoundConstants = new ArrayList<>(); //init
+    static ArrayList<Long> RoundConstants = new ArrayList<>(); //init
     /**
      * translates rcstring's data into an ArrayList of BigIntegers and returns this array.
      * */
-    static public ArrayList<BigInteger> fillRC(){
+    static public ArrayList<Long> fillRC(){
         for(String number : rcstring){
-            RoundConstants.add(new BigInteger(number, 16));
+            RoundConstants.add(Long.decode(number));
         }
         return RoundConstants;
     }
@@ -53,15 +53,19 @@ public class general {
      * Circularly rotate 'value' to the left,
      * treating it as a quantity of the given size in bits.
      */
-    static public void rol(){
-        //ToDo: rol()
+    static public long rol(long value, int left, int bits){
+        long top = value >>> (bits - left);
+        long bot = (value & ((1L << (bits - left)) - 1)) << left;
+        return bot | top;
     }
     /**
      * Circularly rotate 'value' to the right,
      * treating it as a quantity of the given size in bits.
      * */
-    static public void ror(){
-        //ToDo: ror()
+    static public long ror(long value, int right, int bits){
+        long bot = value << (bits - right);
+        long top = (value & ((1L << (bits - right)) - 1)) >>> right;
+        return bot | top;
     }
     /**
      * The Keccak padding function.

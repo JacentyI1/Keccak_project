@@ -4,16 +4,43 @@ package keccak_lib;
  * The state is stored as a 5x5 table of integers.
  * */
 public class KeccakState {
-    final int width = 5;
-    final int height = 5;
+    public static final int W = 5;
+    public static final int H = 5;
     private Object s;
 
-    public void zero(){
-        //ToDo: zero()
+    int[] rangeW = new int[W];
+    int[] rangeH = new int[H];
+
+    KeccakState(){
+        //--Data init
+        for(int i = 0; i< W; i++) rangeW[i] = i;
+        for(int i = 0; i< H; i++) rangeH[i] = i;
+        //ToDo: __init__
+
     }
-    public String format(Object s){
-        //ToDo: format()
-        return null;
+    /**
+     * Returns a 5x5 table filled with 0's. */
+    public static int[][] zero(){
+        int[][] state = new int[H][W];
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                state[i][j] = 0;
+            }
+        }
+        return state;
+    }
+    /**
+     * Formats the given state as hex, in natural byte order.*/
+    public String format(long[][] st){
+        StringBuilder sb = new StringBuilder();
+        for (int y = 0; y < H; y++) {
+            StringBuilder row = new StringBuilder();
+            for (int x = 0; x < W; x++) {
+                row.append(String.format("%016x", st[x][y])).append(" ");
+            }
+            sb.append(row.toString().trim()).append("\n");
+        }
+        return sb.toString().trim();
     }
     public void lane2bytes(){
         //ToDo: lane2bytes()
@@ -27,11 +54,8 @@ public class KeccakState {
     public void str2bytes(){
         //ToDo: str2bytes()
     }
-    KeccakState(){
-        //ToDo: __init__
-    }
     public String toString(){
-        return format(this.s);
+        return null; //format(...);
     }
     /**
      * Mixes in the given bitrate-length string to the state.*/
