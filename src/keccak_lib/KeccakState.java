@@ -21,7 +21,6 @@ public class KeccakState {
     /**
      * Returns a 5x5 table filled with 0's. */
     public static int[][] zero(){
-        //ToDo: zero()
         int[][] state = new int[H][W];
         for (int i = 0; i < H; i++) {
             for (int j = 0; j < W; j++) {
@@ -31,7 +30,7 @@ public class KeccakState {
         return state;
     }
     /**
-     * */
+     * Formats the given state as hex, in natural byte order.*/
     public String format(long[][] st){
         StringBuilder sb = new StringBuilder();
         for (int y = 0; y < H; y++) {
