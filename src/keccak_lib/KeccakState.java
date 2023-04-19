@@ -31,7 +31,7 @@ public class KeccakState {
     }
     /**
      * Formats the given state as hex, in natural byte order.*/
-    public String format(long[][] st){
+    public static String format(long[][] st){
         StringBuilder sb = new StringBuilder();
         for (int y = 0; y < H; y++) {
             StringBuilder row = new StringBuilder();
@@ -42,11 +42,24 @@ public class KeccakState {
         }
         return sb.toString().trim();
     }
-    public void lane2bytes(){
-        //ToDo: lane2bytes()
+    /**
+     * Converts the lane s to a sequence of byte values,
+     * assuming a lane is w bits.*/
+    public static byte[] lane2bytes(long s, int w){
+        byte[] o = new byte[w/8];
+        for (int b = 0; b < w; b += 8) {
+            o[b/8] = (byte)((s >> b) & 0xff);
+        }
+        return o;
     }
-    public void bytes2lane(){
-        //ToDo: butes2lane()
+    /**
+     * */
+    public static long bytes2lane(byte[] b) {
+        long s = 0;
+        for (int i = 0; i < b.length; i++) {
+            s |= ((long) (b[i] & 0xff)) << (8 * i);
+        }
+        return s;
     }
     public void bytes2str(){
         //ToDo: bytes2str()
